@@ -7,7 +7,9 @@
 					<h4 class="subtitle">Dan mengapa kamu akan mencintainya...</h4>
 					<div class="box">
 						<SearchBox />
-						<Card />
+						<div class="cards">
+							<Card />
+						</div>
 					</div>
 				</div>
 			</div>
@@ -25,7 +27,7 @@
 			Card,
 			SearchBox
 		}
-	};
+	}
 </script>
 
 <style>
