@@ -8,7 +8,7 @@
 					<div class="box">
 						<SearchBox />
 						<div class="cards">
-							<Card />
+							<!-- <Card /> -->
 						</div>
 					</div>
 				</div>
@@ -42,5 +42,9 @@
 	.container {
 		width: 800px;
 		max-width: 800px
+	}
+
+	.cards {
+		margin-top: 1em;
 	}
 </style>

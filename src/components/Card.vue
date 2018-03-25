@@ -14,7 +14,9 @@
 			</div>
 			<div class="media-right">
 				<img src="" class="icon" />
-				<a href="#" class="btn-remove"></a>
+				<a href="#" class="btn-remove">
+					<b-icon icon="close" type="is-success"></b-icon>
+				</a>
 			</div>
 		</article>
 	</div>
@@ -24,14 +26,14 @@
 
 
 <script>
-export default {
-  name: "Card",
-  data() {
-    return {
-      msg: "Welcome to Your Vue.js App"
-    };
-  }
-};
+	export default {
+		name: "Card",
+		data() {
+			return {
+				msg: "Welcome to Your Vue.js App"
+			}
+		}
+	}
 </script>
 
 
