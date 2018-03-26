@@ -1,7 +1,7 @@
 <template>
     <div class="search">
         <div class="search-box">
-            <input type="text" class="input" placeholder="Cari tempat..." @input="searchLocation" @keyup.esc="clearOut" ref="searchField" />
+            <input type="text" class="input" placeholder="Cari kota nya..." @input="searchLocation" @keyup.esc="clearOut" ref="searchField" />
         </div>
         <div class="search-result" v-if="showResult">
             <ul>

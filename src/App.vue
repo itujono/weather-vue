@@ -3,12 +3,18 @@
 		<section class="hero is-info is-fullheight">
 			<div class="hero-body">
 				<div class="container">
+					<img src="./assets/sun.png" width="70" alt="Sun" class="rotating-logo">
 					<h1 class="title">App Cuaca buat Kamu</h1>
 					<h4 class="subtitle">Dan mengapa kamu akan mencintai si iklim...</h4>
 					<div class="">
 						<SearchBox @addLocation="addLocation" />
-						<div class="cards">
+						<div class="cards" v-if="cardLocations">
 							<Card v-for="location in locations" :key="location.id" :location="location" @removeLocation="removeLocation" />
+						</div>
+						<div class="empty" v-else>
+							<div class="box">
+								&#9749; Masukkin aja kota mana yang pengen kamu liat cuaca nya saat ini...
+							</div>
 						</div>
 					</div>
 				</div>
@@ -26,7 +32,8 @@
 		components: { Card, SearchBox },
 		data() {
 			return {
-				locations: []
+				locations: [],
+				cardLocations: false
 			}
 		},
 		created() {
@@ -52,13 +59,19 @@
 				if (!this.locations.some(location => location.id === place.id)) {
 					this.locations.unshift(place)
 					this.updateLocalStorage()
+					this.cardLocations = true
 				}
+
+				if (this.locations.length <= 0) this.cardLocations = false
 			},
 			removeLocation(id) {
 				const index = this.locations.findIndex(location => location.id === id)
 
 				this.locations.splice(index, 1)
 				this.updateLocalStorage()
+
+				if (this.locations.length <= 0) this.cardLocations = false
+				
 			}
 		}
 	}
@@ -73,8 +86,29 @@
 		color: #2c3e50;
 	}
 
+	.rotating-logo {
+		animation: rotator 10s infinite linear;
+	}
+
+	.hero-body {
+		padding-top: 0 !important;
+	}
+
 	.hero.is-info {
 		background-color: rgba(22, 125, 240, 0.16) !important;
+	}
+
+	.hero .title {
+		color: #515d80 !important;
+	}
+
+	.hero .subtitle {
+		color: rgba(141, 164, 175, 0.9) !important;
+		margin-bottom: 2.6em;
+	}
+
+	input.input {
+		height: 3em;
 	}
 
 	.container {
@@ -84,5 +118,23 @@
 
 	.cards {
 		margin-top: 1em;
+	}
+
+	.empty {
+		margin-top: 2em;
+	}
+
+	.empty .box {
+		padding: 5rem;
+		background: rgba(251, 251, 251, 0.4)
+	}
+
+	@keyframes rotator {
+		from {
+			transform: rotate(0)
+		}
+		to {
+			transform: rotate(360deg)
+		}
 	}
 </style>
