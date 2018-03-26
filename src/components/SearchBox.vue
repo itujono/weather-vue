@@ -67,6 +67,6 @@
     }
 
     .search-result li:hover {
-        background-color: rgba(255, 255, 255, .4);
+        background-color: rgba(254, 248, 212, .3);
     }
 </style>

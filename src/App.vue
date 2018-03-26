@@ -29,6 +29,9 @@
 				locations: []
 			}
 		},
+		created() {
+			this.getFromLocalStorage()
+		},
 		methods: {
 			addLocation(payload) {
 				let place = {
@@ -38,6 +41,17 @@
 
 				if (!this.locations.some(location => location.id === place.id)) {
 					this.locations.unshift(place)
+					this.updateLocalStorage()
+				}
+			},
+			updateLocalStorage() {
+				if (window.localStorage) {
+					window.localStorage.setItem("weatherLocations", JSON.stringify(this.locations))
+				}
+			},
+			getFromLocalStorage() {
+				if (window.localStorage && window.localStorage["weatherLocations"] !== '') {
+					this.locations = JSON.parse(window.localStorage["weatherLocations"])
 				}
 			}
 		}
