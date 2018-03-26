@@ -5,7 +5,20 @@
         </div>
         <div class="search-result" v-if="showResult">
             <ul>
-                <li v-for="location in locationsArray" @click="emitLocation(location)">{{location.name}}</li>
+                <li v-for="location in locationsArray" @click="emitLocation(location)">
+                    <div class="level">
+                        <div class="level-left">
+                            <div class="level-item">
+                                {{location.name}}
+                            </div>
+                        </div>
+                        <div class="level-right">
+                            <div class="level-item">
+                                <b-icon icon="plus"></b-icon>
+                            </div>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
@@ -60,6 +73,7 @@
     }
 
     .search-result li {
+        color: #444;
         background-color: rgb(254, 248, 212);
         padding: 10px;
         border-bottom: 1px solid rgb(0, 0, 0, .1);
@@ -68,5 +82,16 @@
 
     .search-result li:hover {
         background-color: rgba(254, 248, 212, .3);
+    }
+
+    .search-result li:hover .level .icon {
+        display: flex;
+        visibility: visible;
+    }
+
+    .search-result li .level .icon {
+        display: none;
+        visibility: hidden;
+        color: rgba(68, 68, 68, .3)
     }
 </style>

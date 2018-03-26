@@ -3,12 +3,12 @@
 		<section class="hero is-info is-fullheight">
 			<div class="hero-body">
 				<div class="container">
-					<h1 class="title">App Cuaca Kamu</h1>
-					<h4 class="subtitle">Dan mengapa kamu akan mencintainya...</h4>
-					<div class="box">
+					<h1 class="title">App Cuaca buat Kamu</h1>
+					<h4 class="subtitle">Dan mengapa kamu akan mencintai si iklim...</h4>
+					<div class="">
 						<SearchBox @addLocation="addLocation" />
 						<div class="cards">
-							<Card v-for="location in locations" :key="location.id" />
+							<Card v-for="location in locations" :key="location.id" :location="location" @removeLocation="removeLocation" />
 						</div>
 					</div>
 				</div>
@@ -53,6 +53,12 @@
 					this.locations.unshift(place)
 					this.updateLocalStorage()
 				}
+			},
+			removeLocation(id) {
+				const index = this.locations.findIndex(location => location.id === id)
+
+				this.locations.splice(index, 1)
+				this.updateLocalStorage()
 			}
 		}
 	}
@@ -65,6 +71,10 @@
 		-moz-osx-font-smoothing: grayscale;
 		text-align: center;
 		color: #2c3e50;
+	}
+
+	.hero.is-info {
+		background-color: rgba(22, 125, 240, 0.16) !important;
 	}
 
 	.container {
