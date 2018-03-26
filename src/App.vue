@@ -6,7 +6,7 @@
 					<h1 class="title">App Cuaca Kamu</h1>
 					<h4 class="subtitle">Dan mengapa kamu akan mencintainya...</h4>
 					<div class="box">
-						<SearchBox />
+						<SearchBox @addLocation="addLocation" />
 						<div class="cards">
 							<!-- <Card /> -->
 						</div>
@@ -23,9 +23,23 @@
 
 	export default {
 		name: "App",
-		components: {
-			Card,
-			SearchBox
+		components: { Card, SearchBox },
+		data() {
+			return {
+				locations: []
+			}
+		},
+		methods: {
+			addLocation(payload) {
+				let place = {
+					location: `${payload.lat} ${payload.lon}`,
+					id: payload.id
+				}
+
+				if (!this.locations.some(location => location.id === place.id)) {
+					this.locations.unshift(place)
+				}
+			}
 		}
 	}
 </script>

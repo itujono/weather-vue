@@ -1,12 +1,11 @@
 <template>
     <div class="search">
         <div class="search-box">
-            <input type="text" class="input" placeholder="Cari tempat..." @input="searchLocation" />
+            <input type="text" class="input" placeholder="Cari tempat..." @input="searchLocation" @keyup.esc="clearOut" ref="searchField" />
         </div>
         <div class="search-result" v-if="showResult">
             <ul>
-                <li v-for="location in locationsArray">{{location.name}}</li>
-                <!-- <li>Batam</li> -->
+                <li v-for="location in locationsArray" @click="emitLocation(location)">{{location.name}}</li>
             </ul>
         </div>
     </div>
@@ -26,7 +25,7 @@
         methods: {
             searchLocation: _.debounce(function(event) {
                 if (event.target.value) {
-                    axios.get("http://api.apixu.com/v1/current.json", {
+                    axios.get("http://api.apixu.com/v1/search.json", {
                         params: {
                             key: "d288854f9b8f437fb22173445182503",
                             q: event.target.value
@@ -40,7 +39,16 @@
                         this.locationsArray = []
                     })
                 }
-            }, 400)
+            }, 400),
+            clearOut() {
+                this.showResult = false,
+                this.locationsArray = [],
+                this.$refs.searchField.value = ""
+            },
+            emitLocation(location) {
+                this.$emit("addLocation", location)
+                this.clearOut()
+            }
         }
     }
 </script>
@@ -55,5 +63,10 @@
         background-color: rgb(254, 248, 212);
         padding: 10px;
         border-bottom: 1px solid rgb(0, 0, 0, .1);
+        cursor: pointer;
+    }
+
+    .search-result li:hover {
+        background-color: rgba(255, 255, 255, .4);
     }
 </style>
