@@ -3,7 +3,7 @@
 	<div class="box day">
 		<article class="media">
 			<div class="media-left">
-				<h4 class="temperature">30 &#176;</h4>
+				<h4 class="temperature">30&#176;</h4>
 			</div>
 			<div class="media-content">
 				<div class="content">

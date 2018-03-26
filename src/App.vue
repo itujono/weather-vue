@@ -8,7 +8,7 @@
 					<div class="box">
 						<SearchBox @addLocation="addLocation" />
 						<div class="cards">
-							<!-- <Card /> -->
+							<Card v-for="location in locations" :key="location.id" />
 						</div>
 					</div>
 				</div>
@@ -33,17 +33,6 @@
 			this.getFromLocalStorage()
 		},
 		methods: {
-			addLocation(payload) {
-				let place = {
-					location: `${payload.lat} ${payload.lon}`,
-					id: payload.id
-				}
-
-				if (!this.locations.some(location => location.id === place.id)) {
-					this.locations.unshift(place)
-					this.updateLocalStorage()
-				}
-			},
 			updateLocalStorage() {
 				if (window.localStorage) {
 					window.localStorage.setItem("weatherLocations", JSON.stringify(this.locations))
@@ -52,6 +41,17 @@
 			getFromLocalStorage() {
 				if (window.localStorage && window.localStorage["weatherLocations"] !== '') {
 					this.locations = JSON.parse(window.localStorage["weatherLocations"])
+				}
+			},
+			addLocation(payload) {
+				let place = {
+					location: `${payload.lat}, ${payload.lon}`,
+					id: payload.id
+				}
+
+				if (!this.locations.some(location => location.id === place.id)) {
+					this.locations.unshift(place)
+					this.updateLocalStorage()
 				}
 			}
 		}
