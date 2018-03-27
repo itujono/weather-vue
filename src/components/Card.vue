@@ -32,133 +32,153 @@
 import axios from "axios";
 
 export default {
-  name: "Card",
-  props: ["location"],
-  data() {
-    return {
-      weather: {
-        condition: "",
-        temperature: "",
-        icon: ""
-      },
-      place: {
-        name: "",
-        country: "",
-        isDay: true
-      }
-    };
-  },
-  created() {
-    axios
-      .get("https://api.apixu.com/v1/current.json", {
-        params: {
-          key: "d288854f9b8f437fb22173445182503",
-          q: this.location.location
-        }
-      })
-      .then(res => {
-        const { current, location } = res.data;
+  	name: "Card",
+  	props: ["location"],
+  	data() {
+		return {
+			weather: {
+				condition: "",
+				temperature: "",
+				icon: ""
+			},
+			place: {
+				name: "",
+				country: "",
+				isDay: true
+			}
+		};
+  	},
+	created() {
+		axios
+		.get("https://api.apixu.com/v1/current.json", {
+			params: {
+			key: "d288854f9b8f437fb22173445182503",
+			q: this.location.location
+			}
+		})
+		.then(res => {
+			const { current, location } = res.data;
 
-        this.place.name = location.name;
-        this.place.country = location.country;
-        this.weather.icon = current.condition.icon;
-        this.weather.condition = current.condition.text;
-        this.weather.temperature = current.temp_c;
-        this.place.isDay = current.is_day === 1 ? true : false;
-      })
-      .catch(error =>
-        console.log(`Error kali ini dipersembahkan oleh ${error}`)
-      );
-  }
+			this.place.name = location.name;
+			this.place.country = location.country;
+			this.weather.icon = current.condition.icon;
+			this.weather.condition = current.condition.text;
+			this.weather.temperature = current.temp_c;
+			this.place.isDay = current.is_day === 1 ? true : false;
+		})
+		.catch(error =>
+			console.log(`Error kali ini dipersembahkan oleh ${error}`)
+		);
+	}
 };
 </script>
 
 
 
 <style scoped>
-h1,
-h2 {
-  	font-weight: normal;
-}
-ul {
-	list-style-type: none;
-	padding: 0;
-}
-li {
-	display: inline-block;
-	margin: 0 10px;
-}
-a {
-  	color: #42b983;
-}
+	h1, h2 {
+		font-weight: normal;
+	}
 
-.box {
-	background-color: #5b9eff;
-	position: relative;
-}
+	ul {
+		list-style-type: none;
+		padding: 0;
+	}
 
-.box .media {
-  	align-items: center !important;
-}
+	li {
+		display: inline-block;
+		margin: 0 10px;
+	}
 
-.box .media-left {
-	width: 160px;
-	max-width: 160px;
-}
+	a {
+		color: #42b983;
+	}
 
-.box.night {
-	background-color: #222531;
-	color: #eee;
-}
+	.box {
+		background-color: #5b9eff;
+		position: relative;
+	}
 
-.box:hover .btn-remove {
-	display: inline-block;
-	visibility: visible;
-}
+	.box .media {
+		align-items: center !important;
+	}
 
-.temperature {
-	font-size: 4em;
-	text-align: center;
-}
+	.box .media-left {
+		width: 160px;
+		max-width: 160px;
+	}
 
-.location {
-	font-size: 2em;
-	line-height: 1.3;
-	color: #eee;
-}
+	.box.night {
+		background-color: #222531;
+		color: #eee;
+	}
 
-.box.day .condition {
-  	color: #275a73;
-}
+	.box:hover .btn-remove {
+		display: inline-block;
+		visibility: visible;
+	}
 
-.btn-remove .icon {
-	height: 2rem;
-	width: 2rem;
-}
+	.temperature {
+		color: #f3f700;
+		font-size: 4em;
+		text-align: center;
+	}
 
-.btn-remove {
-	display: none;
-	visibility: hidden;
-	position: absolute;
-	right: -10px;
-	top: -10px;
-	color: rgba(0, 0, 0, 0.5);
-	background: #d82b2b;
-	border-radius: 50%;
-	box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.5);
-}
+	.location {
+		font-size: 2em;
+		line-height: 1.3;
+		color: #eee;
+	}
 
-.btn-remove:hover {
-  	color: #fff !important;
-}
+	.box.day .condition {
+		color: #275a73;
+	}
 
-.slide-fade-enter-active, .slide-fade-leave-active {
-  	transition: all 0.3s ease;
-}
+	.btn-remove .icon {
+		height: 2rem;
+		width: 2rem;
+	}
 
-.slide-fade-enter,
-.slide-fade-leave-to {
-	transform: translateY(10px);
-	opacity: 0;
-}
+	.btn-remove {
+		display: none;
+		visibility: hidden;
+		position: absolute;
+		right: -10px;
+		top: -10px;
+		color: rgba(0, 0, 0, 0.2);
+		background: #d82b2b;
+		border-radius: 50%;
+		box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.5);
+		transition: all .2s ease;
+	}
+
+	.btn-remove:hover {
+		color: #fff !important;
+	}
+
+	.weather-icon {
+		animation: floater 5s infinite linear
+	}
+
+	.slide-fade-enter-active, .slide-fade-leave-active {
+		transition: all 0.5s ease;
+		-o-transition: all 0.5s ease;
+		-moz-transition: all 0.5s ease;
+		-webkit-transition: all 0.5s ease;
+	}
+
+	.slide-fade-enter,
+	.slide-fade-leave-to {
+		transform: translateY(10px);
+		-webkit-transform: translateY(10px);
+		-o-transform: translateY(10px);
+		-moz-transform: translateY(10px);
+		opacity: 0;
+	}
+
+	@keyframes floater {
+		0 { transform: translateY(-20px) }
+		50% { transform: translateY(20px) }
+		100% { transform: translateY(0) }
+	}
 </style>
