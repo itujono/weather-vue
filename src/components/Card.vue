@@ -149,7 +149,13 @@ export default {
 		background: #d82b2b;
 		border-radius: 50%;
 		box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.5);
+		-moz-box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.5);
+		-webkit-box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.5);
+		-o-box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.5);
 		transition: all .2s ease;
+		-moz-transition: all .2s ease;
+		-webkit-transition: all .2s ease;
+		-o-transition: all .2s ease;
 	}
 
 	.btn-remove:hover {
@@ -177,8 +183,8 @@ export default {
 	}
 
 	@keyframes floater {
-		0 { transform: translateY(-20px) }
-		50% { transform: translateY(20px) }
-		100% { transform: translateY(0) }
+		0 { transform: translateY(-20px); }
+		50% { transform: translateY(20px); }
+		100% { transform: translateY(0); }
 	}
 </style>
