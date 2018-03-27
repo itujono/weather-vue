@@ -84,73 +84,69 @@ export default {
 
 <style>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+	font-family: "Avenir", Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-align: center;
+	color: #2c3e50;
 }
 
 .rotating-logo {
-  animation: rotator 10s infinite linear;
+  	animation: rotator 10s infinite linear;
 }
 
 .hero-body {
-  padding-top: 0 !important;
+  	padding-top: 0 !important;
 }
 
 .hero.is-info {
-  background-color: rgba(22, 125, 240, 0.16) !important;
+  	background-color: rgba(22, 125, 240, 0.16) !important;
 }
 
 .hero .title {
-  color: #515d80 !important;
+  	color: #515d80 !important;
 }
 
 .hero .subtitle {
-  color: rgba(141, 164, 175, 0.9) !important;
-  margin-bottom: 2.6em;
+	color: rgba(141, 164, 175, 0.9) !important;
+	margin-bottom: 2.6em;
 }
 
 input.input {
-  height: 3em;
+  	height: 3em;
 }
 
 .container {
-  width: 800px;
-  max-width: 800px;
+  	width: 800px !important;
+  	max-width: 800px !important;
 }
 
 .cards {
-  margin-top: 1em;
+  	margin-top: 1em;
 }
 
 .empty {
-  margin-top: 2em;
+  	margin-top: 2em;
 }
 
 .empty .box {
-  padding: 5rem;
-  background: rgba(251, 251, 251, 0.4);
+	padding: 5rem;
+	background: rgba(251, 251, 251, 0.4);
 }
 
 .slide-fade-enter-active,
 .slide-fade-leave-active {
-  transition: all 0.3s ease;
+  	transition: all 0.3s ease;
 }
 
 .slide-fade-enter,
 .slide-fade-leave-to {
-  transform: translateY(10px);
-  opacity: 0;
+	transform: translateY(10px);
+	opacity: 0;
 }
 
 @keyframes rotator {
-  from {
-    transform: rotate(0);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from { transform: rotate(0) }
+	to { transform: rotate(360deg) }
 }
 </style>
