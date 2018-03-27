@@ -14,11 +14,11 @@
 			</div>
 			<div class="media-right">
 				<img :src="weather.icon" class="icon" />
-				<a href="#" class="btn-remove" @click.prevent="$emit('removeLocation', location.id)">
-					<b-icon icon="close" type="is-danger"></b-icon>
-				</a>
 			</div>
 		</article>
+		<a href="#" class="btn-remove" @click.prevent="$emit('removeLocation', location.id)">
+			<b-icon icon="close"></b-icon>
+		</a>
 	</div>
 
 </template>
@@ -73,47 +73,78 @@ export default {
 
 
 <style scoped>
-	h1,
-	h2 {
-		font-weight: normal;
-	}
-	ul {
-		list-style-type: none;
-		padding: 0;
-	}
-	li {
-		display: inline-block;
-		margin: 0 10px;
-	}
-	a {
-		color: #42b983;
-	}
+h1,
+h2 {
+  font-weight: normal;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
 
-	.box {
-		background-color: #5b9eff;
-	}
+.box {
+  background-color: #5b9eff;
+  position: relative;
+}
 
-	.box.night {
-		background-color: #222531;
-		color: #eee;
-	}
+.box .media {
+  align-items: center !important;
+}
 
-	.temperature {
-		font-size: 4em;
-	}
+.box .media-left {
+  width: 160px;
+  max-width: 160px;
+}
 
-	.location {
-		font-size: 2em;
-		line-height: 1.3;
-		color: #eee;
-	}
+.box.night {
+  background-color: #222531;
+  color: #eee;
+}
 
-	.box.day .condition {
-		color: #275a73;
-	}
+.box:hover .btn-remove {
+	display: inline-block;
+	visibility: visible;
+}
 
-	.icon {
-		height: 3.5rem;
-		width: 3.5rem;
-	}
+.temperature {
+  font-size: 4em;
+  text-align: center;
+}
+
+.location {
+  font-size: 2em;
+  line-height: 1.3;
+  color: #eee;
+}
+
+.box.day .condition {
+  color: #275a73;
+}
+
+.btn-remove .icon {
+  height: 2rem;
+  width: 2rem;
+}
+
+.btn-remove {
+	display: none;
+	visibility: hidden;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    background: #d82b2b;
+    border-radius: 50%;
+	box-shadow: 2px 6px 10px rgba(0, 0, 0, .5);
+}
+
+.btn-remove:hover {
+    color: #fff !important;	
+}
 </style>
