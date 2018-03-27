@@ -1,5 +1,6 @@
 <template>
 
+<transition name="slide-fade" mode="out-in">
 	<div :class='["box", place.isDay ? "day" : "night"]'>
 		<article class="media">
 			<div class="media-left">
@@ -13,13 +14,15 @@
 				</div>
 			</div>
 			<div class="media-right">
-				<img :src="weather.icon" class="icon" />
+				<img :src="weather.icon" class="weather-icon" width="80" />
 			</div>
 		</article>
 		<a href="#" class="btn-remove" @click.prevent="$emit('removeLocation', location.id)">
 			<b-icon icon="close"></b-icon>
 		</a>
 	</div>
+</transition>
+
 
 </template>
 
@@ -75,37 +78,37 @@ export default {
 <style scoped>
 h1,
 h2 {
-  font-weight: normal;
+  	font-weight: normal;
 }
 ul {
-  list-style-type: none;
-  padding: 0;
+	list-style-type: none;
+	padding: 0;
 }
 li {
-  display: inline-block;
-  margin: 0 10px;
+	display: inline-block;
+	margin: 0 10px;
 }
 a {
-  color: #42b983;
+  	color: #42b983;
 }
 
 .box {
-  background-color: #5b9eff;
-  position: relative;
+	background-color: #5b9eff;
+	position: relative;
 }
 
 .box .media {
-  align-items: center !important;
+  	align-items: center !important;
 }
 
 .box .media-left {
-  width: 160px;
-  max-width: 160px;
+	width: 160px;
+	max-width: 160px;
 }
 
 .box.night {
-  background-color: #222531;
-  color: #eee;
+	background-color: #222531;
+	color: #eee;
 }
 
 .box:hover .btn-remove {
@@ -114,37 +117,48 @@ a {
 }
 
 .temperature {
-  font-size: 4em;
-  text-align: center;
+	font-size: 4em;
+	text-align: center;
 }
 
 .location {
-  font-size: 2em;
-  line-height: 1.3;
-  color: #eee;
+	font-size: 2em;
+	line-height: 1.3;
+	color: #eee;
 }
 
 .box.day .condition {
-  color: #275a73;
+  	color: #275a73;
 }
 
 .btn-remove .icon {
-  height: 2rem;
-  width: 2rem;
+	height: 2rem;
+	width: 2rem;
 }
 
 .btn-remove {
 	display: none;
 	visibility: hidden;
-    position: absolute;
-    right: -10px;
-    top: -10px;
-    background: #d82b2b;
-    border-radius: 50%;
-	box-shadow: 2px 6px 10px rgba(0, 0, 0, .5);
+	position: absolute;
+	right: -10px;
+	top: -10px;
+	color: rgba(0, 0, 0, 0.5);
+	background: #d82b2b;
+	border-radius: 50%;
+	box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.5);
 }
 
 .btn-remove:hover {
-    color: #fff !important;	
+  	color: #fff !important;
+}
+
+.slide-fade-enter-active, .slide-fade-leave-active {
+  	transition: all 0.3s ease;
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to {
+	transform: translateY(10px);
+	opacity: 0;
 }
 </style>
